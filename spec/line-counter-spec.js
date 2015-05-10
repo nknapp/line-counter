@@ -68,4 +68,31 @@ describe("line-counter", function () {
         var lc = new LineCounter("abc\ndef");
         expect(lc.countUpTo(6)).toBe(2);
     });
+
+    it("should be able to be invoked multiple times with increasing indexes", function() {
+        var lc = new LineCounter("abc\ndef");
+        expect(lc.countUpTo(1)).toBe(1);
+        expect(lc.countUpTo(2)).toBe(1);
+        expect(lc.countUpTo(4)).toBe(2);
+        expect(lc.countUpTo(6)).toBe(2);
+    });
+
+    it("should be able go back within the current line", function() {
+        var lc = new LineCounter("abc\ndef");
+        expect(lc.countUpTo(6)).toBe(2);
+        expect(lc.countUpTo(4)).toBe(2);
+    });
+
+
+
+    it("should throw an error, if the user tries to go back to previous lines" , function() {
+        var lc = new LineCounter("abc\ndef");
+        expect(function() {
+            lc.countUpTo(6);
+            lc.countUpTo(2);
+        }).toThrow(new Error(
+            "Cannot go back to previous lines. " +
+            "Current line starts at index 4."
+        ));
+    })
 });

@@ -1,3 +1,27 @@
+/*
+The MIT License (MIT)
+
+Copyright (c) 2015 Nils Knappmeier
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 /**
  * Create a new LineCounter instance counting lines in a given string.
  * The class provides a method `countUpTo` that pushes an internal counter
@@ -29,20 +53,33 @@ function LineCounter(contents) {
     // that the line before the first line ends just before the string).
     var eolIndex = -1;
 
+    // The start of the current line
+    var startOfLineIndex = -1;
+
     /**
      * Returns the line-number of a given char-index within the string.
      *
      *
      * @param {number} `upTo` a char-index within the `contents`-string. This char-index must
-     *    be greater or equals to the char-index passed to the previous call to `countUpTo`
+     *    be greater or equal to the line-start of the last char-index passed to the previous
+     *    call to `countUpTo`
      * @returns {number} the line-number of this char-index.
      * @api public
      */
     this.countUpTo = function (upTo) {
+        if (upTo < startOfLineIndex) {
+            throw new Error(
+                "Cannot go back to previous lines. " +
+                "Current line starts at index " + startOfLineIndex +"."
+            );
+        }
         // Go to the next line until the line
         // we hit the line following the 'upTo' index
         while (eolIndex < upTo) {
+            // Next line
             currentLine++;
+            // Move startOfLineIndex to the start of the next line
+            startOfLineIndex = eolIndex + 1;
             // Find next line-end
             var match = lineRegex.exec(contents);
             if (match !== null) {
