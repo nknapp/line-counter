@@ -94,5 +94,26 @@ describe("line-counter", function () {
             "Cannot go back to previous lines. " +
             "Current line starts at index 4."
         ));
-    })
+    });
+    
+    it("should throw an error, if `upTo` in an index out of bounds" , function() {
+        var lc = new LineCounter("abc\ndef");
+        expect(function() {
+            lc.countUpTo(7);
+        }).toThrow(new Error(
+            "Index out of bounds! " +
+            "Index 7 is not beyound the end of the string."
+        ));
+    });
+    
+    it("should throw an error, if `upTo` in an index out of bounds (for string ending with newline)" , function() {
+        var lc = new LineCounter("abc\ndef\n");
+        expect(function() {
+            lc.countUpTo(8);
+        }).toThrow(new Error(
+            "Index out of bounds! " +
+            "Index 8 is not beyound the end of the string."
+        ));
+    });
+
 });
