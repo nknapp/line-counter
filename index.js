@@ -67,6 +67,12 @@ function LineCounter(contents) {
      * @api public
      */
     this.countUpTo = function (upTo) {
+        if (upTo >= contents.length) {
+            throw new Error(
+                "Index out of bounds! " +
+                "Index " + upTo + " is not beyound the end of the string."
+            )
+        }
         if (upTo < startOfLineIndex) {
             throw new Error(
                 "Cannot go back to previous lines. " +
