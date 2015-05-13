@@ -28,7 +28,7 @@ Using the `line-counter` module, we can print line-numbers as well:
 var regex = /sed|ipsum/g;
 var text = require("fs").readFileSync("example.txt");
 
-var LineCounter = require("../");
+var LineCounter = require("line-counter");
 var counter = new LineCounter(text);
 
 var match;
