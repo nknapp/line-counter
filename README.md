@@ -9,7 +9,7 @@ For example, if you want to
 
 Suppose, we want to extract all occurences of 'sed' and 'ipsum' from the following text:
 
-```
+```txt
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
 invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
 accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
@@ -19,15 +19,16 @@ diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet cli
 gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
 ```
+
                             
 We can easily match all the occurences with a regex, but we only get the char-index of each match.
 Using the `line-counter` module, we can print line-numbers as well:
 
-```
+```js
 var regex = /sed|ipsum/g;
-var text = require('line-counter').readFileSync("example.txt");
+var text = require("fs").readFileSync("example.txt");
 
-var LineCounter = require('line-counter');
+var LineCounter = require("../");
 var counter = new LineCounter(text);
 
 var match;
@@ -101,7 +102,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## v1.0.3 - 2015-05-11
 
-### Fixed
+### Fix
 
 - Issue #1: Endless-Loop calling `.upTo(content.length)` for contents that end with a new-line.
 
