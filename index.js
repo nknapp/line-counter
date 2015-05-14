@@ -75,8 +75,8 @@ function LineCounter(contents) {
         }
         if (upTo < startOfLineIndex) {
             throw new Error(
-                "Cannot go back to previous lines. " +
-                "Current line starts at index " + startOfLineIndex +"."
+                "Cannot go back to index " + upTo + ". " +
+                "Current line ("+currentLine+") starts at index " + startOfLineIndex +"."
             );
         }
         // Go to the next line until the line
