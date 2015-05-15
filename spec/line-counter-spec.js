@@ -91,8 +91,8 @@ describe("line-counter", function () {
             lc.countUpTo(6);
             lc.countUpTo(2);
         }).toThrow(new Error(
-            "Cannot go back to previous lines. " +
-            "Current line starts at index 4."
+            "Cannot go back to index 2. " +
+            "Current (2) line starts at index 4."
         ));
     });
     
