@@ -70,7 +70,7 @@ function LineCounter(contents) {
         if (upTo >= contents.length) {
             throw new Error(
                 "Index out of bounds! " +
-                "Index " + upTo + " is not beyound the end of the string."
+                "Index " + upTo + " is beyond the end of the string."
             )
         }
         if (upTo < startOfLineIndex) {
