@@ -98,8 +98,20 @@ function LineCounter(contents) {
                 eolIndex = contents.length - 1;
             }
         }
-
         return currentLine;
+    }
+
+    /**
+     * Returns the location (line-nr and column-nr) of a char index
+     * within the string.
+     * @returns {{column: number, line: number}
+     */
+    this.locate = function(charIndex) {
+        var line = this.countUpTo(charIndex);
+        return {
+            column: charIndex - startOfLineIndex,
+            line: line
+        }
     }
 }
 
