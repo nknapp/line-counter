@@ -105,6 +105,7 @@ function LineCounter(contents) {
      * Returns the location (line-nr and column-nr) of a char index
      * within the string.
      * @returns {{column: number, line: number} line- and column-index (based off `1`)
+     * @api public
      */
     this.locate = function(charIndex) {
         var line = this.countUpTo(charIndex);
