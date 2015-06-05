@@ -104,12 +104,12 @@ function LineCounter(contents) {
     /**
      * Returns the location (line-nr and column-nr) of a char index
      * within the string.
-     * @returns {{column: number, line: number}
+     * @returns {{column: number, line: number} line- and column-index (based off `1`)
      */
     this.locate = function(charIndex) {
         var line = this.countUpTo(charIndex);
         return {
-            column: charIndex - startOfLineIndex,
+            column: charIndex - startOfLineIndex + 1,
             line: line
         }
     }

@@ -95,25 +95,30 @@ describe("line-counter", function () {
             "Current line (2) starts at index 4."
         ));
     });
-    
+
     it("should throw an error, if `upTo` in an index out of bounds" , function() {
         var lc = new LineCounter("abc\ndef");
         expect(function() {
             lc.countUpTo(7);
         }).toThrow(new Error(
             "Index out of bounds! " +
-            "Index 7 is not beyound the end of the string."
+            "Index 7 is beyond the end of the string."
         ));
     });
-    
+
     it("should throw an error, if `upTo` in an index out of bounds (for string ending with newline)" , function() {
         var lc = new LineCounter("abc\ndef\n");
         expect(function() {
             lc.countUpTo(8);
         }).toThrow(new Error(
             "Index out of bounds! " +
-            "Index 8 is not beyound the end of the string."
+            "Index 8 is beyond the end of the string."
         ));
+    });
+
+    it("should return the correct location on `locate`" , function() {
+        var lc = new LineCounter("abc\ndef\n");
+        expect(lc.locate(5)).toEqual({ column: 2, line: 2 });
     });
 
 });

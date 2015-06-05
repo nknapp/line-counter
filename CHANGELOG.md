@@ -1,6 +1,9 @@
 # Change Log
-
 This project adheres to [Semantic Versioning](http://semver.org/).
+
+## Upcoming
+### Add
+- Added `.locate(charIndex)` to return line- and column-index of the char-index location
 
 ## v1.0.3 - 2015-05-11
 ### Fix
