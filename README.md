@@ -76,6 +76,13 @@ Returns the line-number of a given char-index within the string.
 * `upTo` **{number}**: a char-index within the `contents`-string. This char-index must be greater or equal to the line-start of the last char-index passed to the previous call to `countUpTo`
 * `returns` **{number}**: the line-number of this char-index.
 
+### [.locate](index.js#L111)
+
+Returns the location (line-nr and column-nr) of a char index
+within the string.
+
+* `returns` **{{column: number, line: number}**: line- and column-index (based off `1`)
+
 ## Running tests
 
 Install dev dependencies:
